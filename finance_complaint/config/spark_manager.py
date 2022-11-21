@@ -1,5 +1,17 @@
+
+
 import os
 from pyspark.sql import SparkSession
+
+#
+# spark = SparkSession.builder.master('local[*]').appName('finance_complaint') .getOrCreate()
+# hadoop_conf = spark._jsc.hadoopConfiguration()
+# hadoop_conf.set("fs.s3n.impl", "org.apache.hadoop.fs.s3native.NativeS3FileSystem")
+# hadoop_conf.set("fs.s3n.awsAccessKeyId", access_key_id)
+# hadoop_conf.set("fs.s3n.awsSecretAccessKey", secret_access_key)
+#
+# spark_session=spark
+#
 
 
 spark_session = SparkSession.builder.master('local[*]').appName('finance_complaint') \

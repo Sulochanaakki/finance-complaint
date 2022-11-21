@@ -1,17 +1,41 @@
 import os
-import sys
+import argparse
 from finance_complaint.exception import FinanceException
+from finance_complaint.pipeline.training import TrainingPipeline
+from finance_complaint.logger import logger
+from finance_complaint.config.pipeline.training import FinanceConfig
+import sys
 
-def main():
+def start_training(start=False):
     try:
-        print("e")
+        if not start:
+            return None
+        print("Training Running")
+        TrainingPipeline(FinanceConfig()).start()
+        
     except Exception as e:
         raise FinanceException(e, sys)
 
-if __name__== "__main__":
+def main(training_status):
     try:
-        print("e")
+
+        start_training(start=training_status)
+        
     except Exception as e:
         raise FinanceException(e, sys)
 
 
+
+if __name__ == "__main__":
+    try:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--t", default=0, type=int, help="If provided true training will be done else not")
+     
+
+        args = parser.parse_args()
+
+        main(training_status=args.t)
+    except Exception as e:
+        print(e)
+        pass
+        logger.exception(FinanceException(e, sys))
